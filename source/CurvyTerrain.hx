@@ -254,10 +254,10 @@ class CurvyTerrain extends FlxStrip {
 			//uvpos = uvpos % 1;
 			uvt = uvt.concat([endPerc, 0, endPerc, 1]);
 			uvpos += imgPerc;
-			
+			trace("enduv: " + uvpos);
 			if (past1) {
-				vert = vert.concat([points[i2].x, points[i2].y, points[i3].x, points[i3].y]);
-				uvt = uvt.concat([0, 0,0, 1]);
+				//vert = vert.concat([points[i2].x, points[i2].y, points[i3].x, points[i3].y]);
+				//uvt = uvt.concat([0, 0,0, 1]);
 				uvpos = 0;
 			}
 			//uvpos = uvpos % 1;

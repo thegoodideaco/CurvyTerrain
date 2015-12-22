@@ -22,11 +22,11 @@
     <class path="C:\HaxeToolkit\haxe\lib\flixel-addons\git" />
     <class path="C:\HaxeToolkit\haxe\lib\nape\2,0,19" />
     <class path="source" />
-    <class path="export\windows\cpp\haxe" />
+    <class path="export\windows\neko\haxe" />
   </classpaths>
   <!-- Build options -->
   <build>
-    <option directives="flixel=3.3.12&#xA;openfl=3.5.3&#xA;lime=2.8.2&#xA;hscript=2.0.5&#xA;flixel-addons=1.1.1&#xA;nape=2.0.19&#xA;openfl-next&#xA;FLX_NO_FOCUS_LOST_SCREEN&#xA;tools=2.8.2&#xA;no-compilation&#xA;native&#xA;lime-native&#xA;openfl-native&#xA;windows&#xA;desktop&#xA;display" />
+    <option directives="flixel=3.3.12&#xA;openfl=3.5.3&#xA;lime=2.8.2&#xA;hscript=2.0.5&#xA;flixel-addons=1.1.1&#xA;nape=2.0.19&#xA;openfl-next&#xA;FLX_NO_FOCUS_LOST_SCREEN&#xA;tools=2.8.2&#xA;NAPE_NO_INLINE&#xA;no-compilation&#xA;native&#xA;lime-native&#xA;openfl-native&#xA;windows&#xA;desktop&#xA;display" />
     <option flashStrict="False" />
     <option noInlineOnDebug="False" />
     <option mainClass="ApplicationMain" />
