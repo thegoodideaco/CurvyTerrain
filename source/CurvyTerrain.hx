@@ -238,7 +238,7 @@ class CurvyTerrain extends FlxStrip {
 			
 			//vert = vert.concat([points[i0].x, points[i0].y, points[i1].x, points[i1].y]);
 			vert = vert.concat([points[i2].x, points[i2].y, points[i3].x, points[i3].y]);
-			var endPerc:Float = FlxMath.bound(uvpos + imgPerc, 0, 1);
+			//var endPerc:Float = FlxMath.bound(uvpos + imgPerc, 0, 1);
 			var past1:Bool = (uvpos + imgPerc) >= 1;
 			
 			
@@ -246,19 +246,20 @@ class CurvyTerrain extends FlxStrip {
 			
 
 			ind = ind.concat([i0, i1, i2, i2, i3, i1]);
-			//uvt = uvt.concat([uvpos, 0, uvpos, 1]);
 			
-			var endPerc:Float = FlxMath.bound(uvpos + imgPerc, 0, 1);
+			
+			//var endPerc:Float = FlxMath.bound(uvpos + imgPerc, 0, 1);
 			
 			
 			//uvpos = uvpos % 1;
-			uvt = uvt.concat([endPerc, 0, endPerc, 1]);
+			//uvt = uvt.concat([endPerc, 0, endPerc, 1]);
 			uvpos += imgPerc;
-			trace("enduv: " + uvpos);
+			uvt = uvt.concat([uvpos, 0, uvpos, 1]);
+			trace("uvpos: " + uvpos);
 			if (past1) {
 				//vert = vert.concat([points[i2].x, points[i2].y, points[i3].x, points[i3].y]);
 				//uvt = uvt.concat([0, 0,0, 1]);
-				uvpos = 0;
+				//uvpos = 0;
 			}
 			//uvpos = uvpos % 1;
 			//trace(uvpos);

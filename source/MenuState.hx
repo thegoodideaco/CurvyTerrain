@@ -9,6 +9,8 @@ import flixel.math.FlxPoint;
 import flixel.system.scaleModes.StageSizeScaleMode;
 import flixel.util.FlxColor;
 import flixel.util.FlxSpriteUtil;
+import haxe.Timer;
+import openfl.display.Sprite;
 import openfl.Lib;
 
 /**
@@ -27,6 +29,8 @@ class MenuState extends FlxState {
 	public var HILL_AMOUNT:Int = 2;
 	public var MIN_HEIGHT:Float = 0;
 	public var MAX_HEIGHT:Float = 50;
+	
+	public var bFillSpr:Sprite;
 
     override public function create():Void {
         super.create();
@@ -35,13 +39,18 @@ class MenuState extends FlxState {
 		FlxG.scaleMode = new StageSizeScaleMode();
 		FlxG.camera.antialiasing = true;
 		
-		
+		bFillSpr = FlxSpriteUtil.flashGfxSprite;
 		
 		FlxG.watch.add(this,"SECTION_WIDTH");
 		FlxG.watch.add(this,"HILL_AMOUNT");
 		FlxG.watch.add(this,"STEP_AMOUNT");
 		FlxG.watch.add(this,"MIN_HEIGHT");
-		FlxG.watch.add(this,"MAX_HEIGHT");
+		FlxG.watch.add(this, "MAX_HEIGHT");
+		
+		//fixes repeat?
+		FlxSpriteUtil.flashGfxSprite.cacheAsBitmap = true;
+		
+		
 		
         c = new CurvyTerrain(0, FlxG.game.height / 2, "assets/images/grass.png");
         c2 = new CurvyTerrain(0, FlxG.game.height / 2, "assets/images/grass.png");
