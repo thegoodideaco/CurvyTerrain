@@ -2,12 +2,9 @@ package;
 
 import flixel.FlxG;
 import flixel.FlxStrip;
-import flixel.graphics.tile.FlxDrawTrianglesItem.DrawData;
-import flixel.math.FlxAngle;
 import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
 import flixel.system.FlxAssets.FlxGraphicAsset;
-import openfl.geom.Point;
 import openfl.Vector;
 
 /**
@@ -17,7 +14,7 @@ import openfl.Vector;
 class CurvyTerrain extends FlxStrip {
 	public var spline:Array<FlxPoint>;
 	public var angles:Array<Float>;
-	
+
 	public var endPoint:FlxPoint;
 	public var endUV:Float = 0;
 	public var startUV:Float = 0;
@@ -63,7 +60,7 @@ class CurvyTerrain extends FlxStrip {
 
 			direction *= -1;
 		}
-		
+
 		endPoint.copyFrom(spline[spline.length - 1]);
 
 /**
@@ -103,7 +100,6 @@ class CurvyTerrain extends FlxStrip {
 				dist2 = cur.distanceTo(next);
 				distPerc = dist1 / (dist1 + dist2);
 				angles.push(prev.angleBetween(next));
-//trace(prev.angleBetween(cur) + " - " + cur.angleBetween(next) + " - " + prev.angleBetween(next));
 			} else {
 				angles.push(90);
 			}
@@ -127,14 +123,14 @@ class CurvyTerrain extends FlxStrip {
 		var width:Float = Math.abs(end.x - start.x);
 		var middlePoint:FlxPoint = FlxPoint.weak(start.x + (width / 2), start.y + FlxG.random.float(minHeight, maxHeight));
 
-/**
+		/**
 		 * Let's make the first half
 		 */
 		points = points.concat(createCurve(start.x, start.y, middlePoint.x, middlePoint.y, Std.int(amount / 2)));
 
 		points.pop(); // Remove the last point so we don't have duplicates
 
-/**
+		/**
 		 * Second Half
 		 */
 		points = points.concat(createCurve(middlePoint.x, middlePoint.y, end.x, end.y, Std.int(amount - points.length)));
@@ -142,7 +138,7 @@ class CurvyTerrain extends FlxStrip {
 		return points;
 	}
 
-/**
+	/**
 	 * Create a curve segment to be connected to other segments
 	 * @param	x1 start x position
 	 * @param	y1 start y position
@@ -164,7 +160,7 @@ class CurvyTerrain extends FlxStrip {
 		return points;
 	}
 
-/**
+	/**
 	 * Returns a point on the curved path between two points
 	 * @param	x1 start x position
 	 * @param	y1 start y position
@@ -198,7 +194,7 @@ class CurvyTerrain extends FlxStrip {
 
 		var vBottom:FlxPoint = FlxPoint.get(vTop.x, vTop.y);
 		vBottom.rotate(p, 180);
-
+		
 		vTop.set(FlxMath.roundDecimal(vTop.x, 6), FlxMath.roundDecimal(vTop.y, 6));
 		vBottom.set(FlxMath.roundDecimal(vBottom.x, 6), FlxMath.roundDecimal(vBottom.y, 6));
 
@@ -222,49 +218,39 @@ class CurvyTerrain extends FlxStrip {
 		//make first two vert points with uvt
 		vert = vert.concat([points[0].x, points[0].y, points[1].x, points[1].y]);
 		uvt = uvt.concat([startUV, 0, startUV, 1]);
-		trace("start uv: " + startUV);
 		var uvpos:Float = startUV;
 		for (i in 1...spline.length) {
+			
 			var newPoints:Array<FlxPoint> = getPointVerts(i);
 			var pointDistance:Float = spline[i - 1].distanceTo(spline[i]);
 			var imgPerc:Float = pointDistance / graphic.bitmap.width;
+			
+			imgPerc = FlxMath.bound(imgPerc, 0, 1);
+			
 			points = points.concat(newPoints);
-
 			i0 = points.length - 4;
 			i1 = points.length - 3;
 			i2 = points.length - 2;
 			i3 = points.length - 1;
-			
-			
-			//vert = vert.concat([points[i0].x, points[i0].y, points[i1].x, points[i1].y]);
-			vert = vert.concat([points[i2].x, points[i2].y, points[i3].x, points[i3].y]);
-			//var endPerc:Float = FlxMath.bound(uvpos + imgPerc, 0, 1);
-			var past1:Bool = (uvpos + imgPerc) >= 1;
-			
-			
-			
-			
 
+			vert = vert.concat([points[i2].x, points[i2].y, points[i3].x, points[i3].y]);
 			ind = ind.concat([i0, i1, i2, i2, i3, i1]);
-			
-			
-			//var endPerc:Float = FlxMath.bound(uvpos + imgPerc, 0, 1);
-			
-			
-			//uvpos = uvpos % 1;
-			//uvt = uvt.concat([endPerc, 0, endPerc, 1]);
 			uvpos += imgPerc;
-			uvt = uvt.concat([uvpos, 0, uvpos, 1]);
-			trace("uvpos: " + uvpos);
-			if (past1) {
-				//vert = vert.concat([points[i2].x, points[i2].y, points[i3].x, points[i3].y]);
-				//uvt = uvt.concat([0, 0,0, 1]);
-				//uvpos = 0;
+			
+			if (uvpos > 1) {
+				uvpos = 1;
 			}
-			//uvpos = uvpos % 1;
-			//trace(uvpos);
+			uvt = uvt.concat([uvpos, 0, uvpos, 1]);
+			
+			if (uvpos == 1) {
+				uvpos = 0;
+				vert = vert.concat([points[i2].x, points[i2].y, points[i3].x, points[i3].y]);
+				uvt = uvt.concat([uvpos, 0, uvpos, 1]);
+				points = points.concat(newPoints);
+			}
+			
 		}
-		
+
 		endUV = uvpos;
 
 		this.vertices = Vector.ofArray(vert);
