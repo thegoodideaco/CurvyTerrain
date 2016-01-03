@@ -11,8 +11,10 @@ These are the issues I'm coming across for specific platforms.
 
 > **CPP**
 
-> - BitmapFill does not allow for repeat. Because of this, each uvt point that is drawn cannot go over 1%.
-> - I've noticed a weird difference in starting position. It is supposed to start at 50% height, but seems to start at 0?
+> - BitmapFill does not allow for repeat for OpenFL Legacy. Because of this, each uvt point that is drawn cannot go over 1%.
+> - If OpenFL Next is used, memory use goes thru the roof. I've included a .hxt file to be loaded into hxScout.
+> - I've noticed a weird difference in starting position. It is supposed to start at 50% height, but seems to start at 0.
+
 
 
 ----------
