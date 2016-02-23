@@ -13,5 +13,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Flixel" level="project" />
     <orderEntry type="library" name="openfl" level="project" />
+    <orderEntry type="library" name="flixel addons" level="project" />
+    <orderEntry type="library" name="lime" level="project" />
   </component>
 </module>
