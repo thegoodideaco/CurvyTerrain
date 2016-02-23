@@ -1,6 +1,8 @@
 **CurvyTerrain**
 ============
 
+![](https://raw.githubusercontent.com/thegoodideaco/CurvyTerrain/master/readme_assets/curvy.gif)
+
 Experimenting with drawtriangles API to generate procedural curvy terrain. Used with flixel
 
 Any help is greatly appreciated!
