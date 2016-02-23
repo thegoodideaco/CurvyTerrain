@@ -11,6 +11,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Flixel Stuff" level="application" />
+    <orderEntry type="library" name="Flixel" level="project" />
+    <orderEntry type="library" name="openfl" level="project" />
   </component>
 </module>

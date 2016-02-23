@@ -24,9 +24,9 @@
     <assets path="assets"/>
 
     <!--------------------------------LIBRARIES------------------------------------->
-    <haxelib name="flixel" version="git"/>
+    <haxelib name="flixel" version="4.0.0"/>
     <!--In case you want to use the addons package-->
-    <haxelib name="flixel-addons" version="git"/>
+    <haxelib name="flixel-addons" version="2.0.0"/>
     <!--In case you want to use the ui package-->
     <!--haxelib name="flixel-ui"/-->
     <!--In case you want to use nape with flixel-->
